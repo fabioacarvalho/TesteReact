@@ -1,0 +1,25 @@
+{
+    "name": "Next.js Dev Container",
+    "image": "node:18",               
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {}, 
+        "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode",
+                "formulahendry.auto-close-tag",
+                "formulahendry.auto-rename-tag"
+            ]
+        }
+    },
+    "forwardPorts": [8080],           
+    "postCreateCommand": "npm install", // instala dependências automaticamente
+    "mounts": ["source=${localWorkspaceFolder},target=/workspace,type=bind"],
+    "workspaceFolder": "/workspace"
+}
