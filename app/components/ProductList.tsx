@@ -8,7 +8,7 @@ import { ProductListProps } from "../types/product";
 
 export function ProductList({ filter }: ProductListProps) {
   const { products, loading, error } = useProducts();
-  const initialItemsPerPage = parseInt(localStorage.getItem("itemsPerPage") || "2");
+  const initialItemsPerPage = parseInt(localStorage.getItem("itemsPerPage") || "10");
   const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
 
   useEffect(() => {
@@ -17,9 +17,13 @@ export function ProductList({ filter }: ProductListProps) {
 
   const filteredProducts = useMemo(
     () =>
-      products.filter((product) =>
-        product.name.toLowerCase().includes(filter.toLowerCase())
-      ),
+      products.filter((product) => {
+        return (
+          product.name.toLowerCase().includes(filter.toLowerCase()) ||
+          product.model.toLowerCase().includes(filter.toLowerCase()) ||
+          product.cars.some((car) => car.toLowerCase().includes(filter.toLowerCase()))
+        );
+      }),
     [products, filter]
   );
 
