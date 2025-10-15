@@ -2,8 +2,11 @@
 
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
 import { ProductList } from "./ProductList";
+import { useState } from "react";
 
 export default function Products() {
+  const [filter, setFilter] = useState('')
+
 
   return (
     <div className="w-full flex justify-center flex-col h-full">
@@ -18,6 +21,8 @@ export default function Products() {
             type="search"
             placeholder="Pesquisar produtos"
             className="col-start-1 row-start-1 block w-full rounded-md bg-white py-1.5 pl-10 pr-3 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:pl-9 sm:text-sm/6"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
           />
           <MagnifyingGlassIcon
             aria-hidden="true"
@@ -29,7 +34,7 @@ export default function Products() {
       <div className="mb-4 border-b border-1"></div>
       <div>
 
-        <ProductList />
+        <ProductList filter={filter} />
 
       </div>
     </div>

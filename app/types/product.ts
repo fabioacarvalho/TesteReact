@@ -13,3 +13,7 @@ export interface Product {
     wetGrip: string;
     cars: string[];
 };
+
+export interface ProductListProps {
+    filter: string;
+}
