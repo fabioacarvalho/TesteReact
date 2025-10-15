@@ -1,6 +1,7 @@
 'use client';
 
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
+import { ProductList } from "./ProductList";
 
 export default function Products() {
 
@@ -27,7 +28,9 @@ export default function Products() {
 
       <div className="mb-4 border-b border-1"></div>
       <div>
-        Produtos aqui
+
+        <ProductList />
+
       </div>
     </div>
   )
