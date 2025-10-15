@@ -8,12 +8,7 @@ import { ProductListProps } from "../types/product";
 
 export function ProductList({ filter }: ProductListProps) {
   const { products, loading, error } = useProducts();
-  const initialItemsPerPage = parseInt(localStorage.getItem("itemsPerPage") || "10");
-  const [itemsPerPage, setItemsPerPage] = useState(initialItemsPerPage);
-
-  useEffect(() => {
-    localStorage.setItem("itemsPerPage", itemsPerPage.toString());
-  }, [itemsPerPage]);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const filteredProducts = useMemo(
     () =>
@@ -70,26 +65,28 @@ export function ProductList({ filter }: ProductListProps) {
         </div>
       )}
 
-      <div className="mb-4 mt-4">
-        <label htmlFor="itemsPerPage" className="mr-2 font-medium">
-          Itens por página:
-        </label>
-        <select
-          id="itemsPerPage"
-          value={itemsPerPage}
-          onChange={handleItemsPerPageChange}
-          className="border border-gray-300 rounded px-2 py-1 text-black"
-        >
-          <option value={2}>2</option>
-          <option value={5}>5</option>
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={50}>50</option>
-        </select>
-      </div>
+      {filteredProducts.length > 0 && (
+        <div className="mb-4 mt-4">
+          <label htmlFor="itemsPerPage" className="mr-2 font-medium">
+            Itens por página:
+          </label>
+          <select
+            id="itemsPerPage"
+            value={itemsPerPage}
+            onChange={handleItemsPerPageChange}
+            className="border border-gray-300 rounded px-2 py-1 text-black"
+          >
+            <option value={2}>2</option>
+            <option value={5}>5</option>
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+          </select>
+        </div>
+      )}
 
       {filteredProducts.length === 0 && (
-        <p className="text-gray-500 text-center mt-6">Nenhum produto encontrado.</p>
+        <p className="text-gray-500 text-center mt-6">Nenhum produto encontrado</p>
       )}
     </div>
   );

@@ -6,7 +6,7 @@ export default function ProductCard({
  }: Product ) {
     
     return (
-        <div key={name} className="flex flex-col sm:flex-row bg-white rounded-lg w-full sm:max-w-[830px] p-3 mb-3 shadow-md shadow-gray-300 text-black mx-auto">
+        <div key={name} data-testid="product" className="flex flex-col sm:flex-row bg-white rounded-lg w-full sm:max-w-[830px] p-3 mb-3 shadow-md shadow-gray-300 text-black mx-auto">
 
             <div className="flex flex-col sm:flex-col bg-white p-3 mb-3  text-black mx-auto">
                 <div className="sm:w-32 h-32 rounded-lg overflow-hidden mr-0

@@ -32,7 +32,7 @@ export default function Products() {
       </div>
 
       <div className="mb-4 border-b border-1"></div>
-      <div>
+      <div >
 
         <ProductList filter={filter} />
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { productService } from "../api";
+import { productService } from "../api/index";
 import { Product } from "../types/product";
 
 export function useProducts() {
@@ -10,7 +10,7 @@ export function useProducts() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function getAllProducts() {
+    async function fetchProducts() {
       try {
         const data = await productService.getProducts();
         setProducts(data);
@@ -19,10 +19,10 @@ export function useProducts() {
         setError("Failed to get products");
       } finally {
         setLoading(false);
-      };
+      }
     }
 
-    getAllProducts();
+    fetchProducts();
   }, []);
 
   return { products, loading, error };
